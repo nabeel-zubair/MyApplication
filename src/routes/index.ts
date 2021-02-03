@@ -8,11 +8,13 @@ const appRoutes: NavigationRoute[] = [
   {
     key: 1,
     name: 'Home',
+    // @ts-ignore
     component: Home,
   },
   {
     key: 2,
     name: 'About',
+    // @ts-ignore
     component: About,
   },
 ];

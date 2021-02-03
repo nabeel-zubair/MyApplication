@@ -11,6 +11,7 @@ const styles = {
   backgroundColor: '#ffffff',
   fontSize: 30,
   padding: 16,
+  margin: 32,
 };
 
 export default styles;

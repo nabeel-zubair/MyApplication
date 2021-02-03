@@ -1,15 +1,17 @@
 import React, {FunctionComponent} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-import {Button} from 'react-native-paper';
+import {Button, withTheme} from 'react-native-paper';
 
 import HomeStyles from '../../assets/theme/Home';
+import {CustomizedTheme} from '../../assets/types';
 
 type HomeProps = {
-  testAction?: () => void;
+  testAction: () => void;
   navigation: any;
+  theme: CustomizedTheme;
 };
 
-const {fontSize, padding, width, height, backgroundColor} = HomeStyles;
+const {fontSize, width, height, padding, backgroundColor, margin} = HomeStyles;
 
 const styles = StyleSheet.create({
   content: {
@@ -24,11 +26,13 @@ const styles = StyleSheet.create({
   },
   button: {
     justifyContent: 'center',
-    margin: 32,
+    margin,
   },
 });
 
-const Home: FunctionComponent<HomeProps> = ({testAction, navigation}) => {
+const Home: FunctionComponent<HomeProps> = (props) => {
+  const {testAction, navigation, theme} = props;
+
   const onPressHandler = () => {
     testAction!();
     navigation.navigate('About');
@@ -43,7 +47,7 @@ const Home: FunctionComponent<HomeProps> = ({testAction, navigation}) => {
       {/*@ts-ignore*/}
       <Button
         style={styles.button}
-        color="#0277bd"
+        color={theme.colors.primary}
         icon="chevron-right"
         mode="contained"
         onPress={onPressHandler}>
@@ -53,4 +57,4 @@ const Home: FunctionComponent<HomeProps> = ({testAction, navigation}) => {
   );
 };
 
-export default Home;
+export default withTheme(Home);

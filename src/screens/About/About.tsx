@@ -1,15 +1,17 @@
 import React, {FunctionComponent} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-import {Button} from 'react-native-paper';
+import {Button, withTheme} from 'react-native-paper';
 
 import AboutStyles from '../../assets/theme/About';
+import {CustomizedTheme} from '../../assets/types';
 
 type AboutProps = {
   testAction?: () => void;
   navigation: any;
+  theme: CustomizedTheme;
 };
 
-const {fontSize, padding, width, height, backgroundColor} = AboutStyles;
+const {fontSize, padding, width, height, backgroundColor, margin} = AboutStyles;
 
 const styles = StyleSheet.create({
   content: {
@@ -24,11 +26,13 @@ const styles = StyleSheet.create({
   },
   button: {
     justifyContent: 'center',
-    margin: 32,
+    margin,
   },
 });
 
-const About: FunctionComponent<AboutProps> = ({testAction, navigation}) => {
+const About: FunctionComponent<AboutProps> = (props) => {
+  const {testAction, navigation, theme} = props;
+
   const onPressHandler = () => {
     testAction!();
     navigation.navigate('Home');
@@ -43,7 +47,7 @@ const About: FunctionComponent<AboutProps> = ({testAction, navigation}) => {
       {/*@ts-ignore*/}
       <Button
         style={styles.button}
-        color="#c62828"
+        color={theme.colors.accent}
         icon="chevron-left"
         mode="contained"
         onPress={onPressHandler}>
@@ -53,4 +57,4 @@ const About: FunctionComponent<AboutProps> = ({testAction, navigation}) => {
   );
 };
 
-export default About;
+export default withTheme(About);
