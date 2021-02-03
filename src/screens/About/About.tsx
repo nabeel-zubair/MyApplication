@@ -1,5 +1,6 @@
 import React, {FunctionComponent} from 'react';
-import {View, Text, StyleSheet, Button} from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
+import {Button} from 'react-native-paper';
 
 import AboutStyles from '../../assets/theme/About';
 
@@ -17,10 +18,13 @@ const styles = StyleSheet.create({
     padding,
     backgroundColor,
     alignItems: 'center',
-    justifyContent: 'center',
   },
   text: {
     fontSize,
+  },
+  button: {
+    justifyContent: 'center',
+    margin: 32,
   },
 });
 
@@ -36,10 +40,15 @@ const About: FunctionComponent<AboutProps> = ({testAction, navigation}) => {
   return (
     <View style={styles.content}>
       <Text style={styles.text}>{title}</Text>
+      {/*@ts-ignore*/}
       <Button
-        title={navigateButton}
-        onPress={onPressHandler}
-      />
+        style={styles.button}
+        color="#c62828"
+        icon="chevron-left"
+        mode="contained"
+        onPress={onPressHandler}>
+        {navigateButton}
+      </Button>
     </View>
   );
 };
