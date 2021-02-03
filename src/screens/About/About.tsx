@@ -1,14 +1,14 @@
 import React, {FunctionComponent} from 'react';
 import {View, Text, StyleSheet, Button} from 'react-native';
 
-import HomeStyles from '../../assets/theme/Home';
+import AboutStyles from '../../assets/theme/About';
 
-type HomeProps = {
+type AboutProps = {
   testAction?: () => void;
   navigation: any;
 };
 
-const {fontSize, padding, width, height, backgroundColor} = HomeStyles;
+const {fontSize, padding, width, height, backgroundColor} = AboutStyles;
 
 const styles = StyleSheet.create({
   content: {
@@ -24,21 +24,24 @@ const styles = StyleSheet.create({
   },
 });
 
-const Home: FunctionComponent<HomeProps> = ({testAction, navigation}) => {
+const About: FunctionComponent<AboutProps> = ({testAction, navigation}) => {
   const onPressHandler = () => {
     testAction!();
-    navigation.navigate('About');
+    navigation.navigate('Home');
   };
 
-  const title = 'Home Screen';
-  const navigateButton = 'Go To About';
+  const title = 'About Screen';
+  const navigateButton = 'Go To Home';
 
   return (
     <View style={styles.content}>
       <Text style={styles.text}>{title}</Text>
-      <Button title={navigateButton} onPress={onPressHandler} />
+      <Button
+        title={navigateButton}
+        onPress={onPressHandler}
+      />
     </View>
   );
 };
 
-export default Home;
+export default About;

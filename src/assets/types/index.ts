@@ -1,3 +1,9 @@
 /* Type declarations for the application */
 
-export {};
+import {FunctionComponent} from 'react';
+
+export type NavigationRoute = {
+  key: number;
+  name: string;
+  component: FunctionComponent;
+};

@@ -1,40 +1,37 @@
 import React from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  View,
-  StatusBar,
-  Dimensions,
-} from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
+import 'react-native-gesture-handler';
+import {SafeAreaView, StyleSheet, StatusBar} from 'react-native';
 import {Provider} from 'react-redux';
 
 import store from './src/store';
-import Home from './src/screens/Home';
+import routes from './src/routes';
 
-const width = Dimensions.get('screen').width;
-const height = Dimensions.get('screen').height;
-
+const Stack = createStackNavigator();
 const App = () => {
   return (
     <>
-      <Provider store={store}>
-        <StatusBar barStyle="light-content" backgroundColor="#2e2e2e" />
-        <SafeAreaView style={styles.topSafeArea} />
-        <View style={styles.container}>
-          <Home />
-        </View>
-      </Provider>
+      <NavigationContainer>
+        <Provider store={store}>
+          <StatusBar barStyle="light-content" backgroundColor="#2e2e2e" />
+          <SafeAreaView style={styles.topSafeArea} />
+          <Stack.Navigator headerMode="none">
+            {routes.map((route) => (
+              <Stack.Screen
+                key={route.key}
+                name={route.name}
+                component={route.component}
+              />
+            ))}
+          </Stack.Navigator>
+        </Provider>
+      </NavigationContainer>
     </>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    padding: 16,
-    width,
-    height,
-  },
   topSafeArea: {
     flex: 0,
     backgroundColor: '#2e2e2e',
