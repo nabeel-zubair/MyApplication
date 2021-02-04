@@ -6,7 +6,7 @@ import AboutStyles from '../../assets/theme/About';
 import {CustomizedTheme} from '../../assets/types';
 
 type AboutProps = {
-  testAction?: () => void;
+  testAction: () => void;
   navigation: any;
   theme: CustomizedTheme;
 };
@@ -34,7 +34,7 @@ const About: FunctionComponent<AboutProps> = (props) => {
   const {testAction, navigation, theme} = props;
 
   const onPressHandler = () => {
-    testAction!();
+    testAction();
     navigation.navigate('Home');
   };
 

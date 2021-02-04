@@ -34,7 +34,7 @@ const Home: FunctionComponent<HomeProps> = (props) => {
   const {testAction, navigation, theme} = props;
 
   const onPressHandler = () => {
-    testAction!();
+    testAction();
     navigation.navigate('About');
   };
 
