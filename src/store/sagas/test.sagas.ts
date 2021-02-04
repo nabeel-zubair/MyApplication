@@ -4,10 +4,10 @@ import {FILTER_ACTIONS} from '../actions/reduxActions';
 
 function* testSaga() {
   try {
+    yield delay(800);
     yield put(testActions.testAction.pending);
-    yield delay(500);
+    yield delay(800);
     yield put(testActions.testAction.success('succeeded!'));
-    yield delay(500);
   } catch {
     yield put(testActions.testAction.error('failed!'));
   }
