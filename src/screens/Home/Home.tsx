@@ -1,13 +1,14 @@
 import React, {FunctionComponent} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {Button, withTheme} from 'react-native-paper';
+import MapView from 'react-native-maps';
 
 import HomeStyles from '../../assets/theme/Home';
-import {CustomizedTheme} from '../../assets/types';
+import {CustomizedTheme, NavigationType} from '../../assets/types';
 
 type HomeProps = {
   testAction: () => void;
-  navigation: any;
+  navigation: NavigationType;
   theme: CustomizedTheme;
 };
 
@@ -28,6 +29,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     margin,
   },
+  mapView: {
+    height: 640,
+    width,
+  },
 });
 
 const Home: FunctionComponent<HomeProps> = (props) => {
@@ -40,6 +45,12 @@ const Home: FunctionComponent<HomeProps> = (props) => {
 
   const title = 'Home Screen';
   const navigateButton = 'Go To About';
+  const testLocation = {
+    latitude: 31.529977,
+    longitude: 74.344114,
+    latitudeDelta: 0.025,
+    longitudeDelta: 0.025,
+  };
 
   return (
     <View style={styles.content}>
@@ -53,6 +64,7 @@ const Home: FunctionComponent<HomeProps> = (props) => {
         onPress={onPressHandler}>
         {navigateButton}
       </Button>
+      <MapView style={styles.mapView} initialRegion={testLocation} />
     </View>
   );
 };

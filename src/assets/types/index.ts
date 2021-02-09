@@ -20,3 +20,7 @@ export type BarStyles = {
   default: StatusBarStyle;
   backgroundColor?: string;
 };
+
+export type NavigationType = {
+  [key: string]: any;
+};

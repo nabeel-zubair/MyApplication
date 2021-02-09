@@ -3,11 +3,11 @@ import {View, Text, StyleSheet} from 'react-native';
 import {Button, withTheme} from 'react-native-paper';
 
 import AboutStyles from '../../assets/theme/About';
-import {CustomizedTheme} from '../../assets/types';
+import {CustomizedTheme, NavigationType} from '../../assets/types';
 
 type AboutProps = {
   testAction: () => void;
-  navigation: any;
+  navigation: NavigationType;
   theme: CustomizedTheme;
   usersList: Function;
 };
