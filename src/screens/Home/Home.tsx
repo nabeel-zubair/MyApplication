@@ -1,5 +1,5 @@
 import React, {FunctionComponent} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import { View, Text, StyleSheet, Platform } from "react-native";
 import {Button, withTheme} from 'react-native-paper';
 import MapView from 'react-native-maps';
 
@@ -64,7 +64,9 @@ const Home: FunctionComponent<HomeProps> = (props) => {
         onPress={onPressHandler}>
         {navigateButton}
       </Button>
-      <MapView style={styles.mapView} initialRegion={testLocation} />
+      {Platform.OS === 'ios' && (
+        <MapView style={styles.mapView} initialRegion={testLocation} />
+      )}
     </View>
   );
 };
