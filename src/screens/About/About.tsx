@@ -1,4 +1,4 @@
-import React, {FunctionComponent} from 'react';
+import React, {FunctionComponent, useEffect} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {Button, withTheme} from 'react-native-paper';
 
@@ -9,6 +9,7 @@ type AboutProps = {
   testAction: () => void;
   navigation: any;
   theme: CustomizedTheme;
+  usersList: Function;
 };
 
 const {fontSize, padding, width, height, backgroundColor, margin} = AboutStyles;
@@ -31,12 +32,16 @@ const styles = StyleSheet.create({
 });
 
 const About: FunctionComponent<AboutProps> = (props) => {
-  const {testAction, navigation, theme} = props;
+  const {testAction, usersList, navigation, theme} = props;
 
   const onPressHandler = () => {
     testAction();
     navigation.navigate('Home');
   };
+
+  useEffect(() => {
+    console.log(usersList);
+  }, [usersList]);
 
   const title = 'About Screen';
   const navigateButton = 'Go To Home';

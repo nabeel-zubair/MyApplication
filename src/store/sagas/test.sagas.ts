@@ -1,13 +1,19 @@
-import {put, takeEvery, all, delay} from 'redux-saga/effects';
+import {put, takeEvery, retry, all, delay} from 'redux-saga/effects';
+import {API_CONFIGURATIONS, Api} from '../../services';
 import {testActions} from '../actions/';
 import {FILTER_ACTIONS} from '../actions/reduxActions';
 
 function* testSaga() {
   try {
+    const response = yield retry(
+      API_CONFIGURATIONS.MAX_RETRY_COUNT,
+      API_CONFIGURATIONS.RETRY_INTERVAL,
+      Api.getUsers,
+    );
     yield delay(800);
     yield put(testActions.testAction.pending);
     yield delay(800);
-    yield put(testActions.testAction.success('succeeded!'));
+    yield put(testActions.testAction.success(response));
   } catch {
     yield put(testActions.testAction.error('failed!'));
   }
